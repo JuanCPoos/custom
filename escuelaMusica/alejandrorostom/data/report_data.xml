@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+        <record id="action_report_recibo_pago" model="ir.actions.report">
+            <field name="name">Recibo de Pago</field>
+            <field name="model">account.move</field>
+            <field name="report_name">your_module.report_recibo_pago</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_file">your_module.report_recibo_pago</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,13 @@
+<odoo>
+    <template id="report_recibo_pago">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <h2>Recibo de Pago</h2>
+                <p>Cliente: <t t-esc="doc.partner_id.name"/></p>
+                <p>Fecha: <t t-esc="doc.date"/></p>
+                <p>Monto Pagado: <t t-esc="doc.amount_total"/></p>
+                <!-- Agrega más campos según sea necesario -->
+            </div>
+        </t>
+    </template>
+</odoo>
