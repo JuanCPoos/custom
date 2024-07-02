@@ -1,0 +1,7 @@
+<!-- your_custom_module/security/security.xml -->
+<odoo>
+    <data noupdate="1">
+      <!-- Define any security rules if needed -->
+    </data>
+</odoo>
+  

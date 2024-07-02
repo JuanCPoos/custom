@@ -1,0 +1,82 @@
+<odoo>
+  <data>
+    <record id="view_res_partner_form_inherit_res_partner" model="ir.ui.view">
+      <field name="name">res.partner.form.inherit.res.partner</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field eval="1" name="priority" />
+      <field name="arch" type="xml">
+        <!-- Colocar después del campo 'vat' -->
+        <field name="vat" position="after">
+          <field name="x_factura_estado"
+            style="background-color: #D6D603; padding: 5px 5px; box-shadow: 2px 2px 4px ##EBEBEB; border-radius: 5px" />
+        </field>
+
+        <!-- Colocar después del campo 'function' -->
+        <xpath expr="//field[@name='function']" position="before">
+          <field name="x_tipo_persona" />
+          <field name="x_fecha_nacimiento" />
+          <field name="x_dni_alumno" />
+          <!-- <field name="x_nombre_contacto_asignado" string="Nombre Contacto"/> -->
+        </xpath>
+
+        <!--  <xpath expr="//field[@name='child_ids']/form/group/field[@name='name']"
+        position="after">
+          <field name="title" string="Tipo Persona" />
+
+        </xpath>
+ -->
+
+        <!-- Página información adicional -->
+        <xpath expr="//page[@name='contact_addresses']" position="before">
+          <page name="x_informacion_adicional" string="Información adicional">
+            <!-- attrs="{'invisible':[('title', '!=', 'Alumno')]}" -->
+            <group>
+              <group>
+                <field name="x_taller_ids">
+                  <tree string="Talleres">
+                    <field name="product_id" />
+                    <field name="x_instrumento" />
+                    <field name="x_cuadernillo" />
+                  </tree>
+                  <form string="Taller">
+                    <group>
+                      <field name="product_id" />
+                      <field name="x_instrumento" />
+                      <field name="x_cuadernillo" />
+                    </group>
+                  </form>
+                </field>
+              </group>
+            </group>
+          </page>
+        </xpath>
+
+
+        <!-- Renombrar la página 'internal_notes' a 'Observaciones' -->
+        <xpath expr="//page[@name='internal_notes']" position="attributes">
+          <attribute name="string">Observaciones</attribute>
+        </xpath>
+
+        <!-- Hacer invisibles ciertos campos cuando 'type' es 1 -->
+        <xpath expr="//field[@name='type']" position="attributes">
+          <attribute name="invisible" separator="" add="" remove="" value="">1</attribute>
+        </xpath>
+        
+
+      </field>
+    </record>
+     <!-- Heredar la vista de lista de res.partner -->
+     <record id="view_res_partner_tree_inherit" model="ir.ui.view">
+      <field name="name">res.partner.tree.inherit</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree" position="inside">
+          <!-- Agregar la columna para x_factura_estado -->
+          <field name="x_factura_estado"/>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

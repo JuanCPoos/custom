@@ -1,0 +1,34 @@
+<odoo>
+    <template id="medical_record_portal_template" name="Medical Record Portal">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Mis Fichas Médicas</h1>
+                <form t-att-action="/my/medical_records/submit" method="POST">
+                    <div class="form-group">
+                        <label for="x_condicion_medica">Condición Médica</label>
+                        <input type="text" name="x_condicion_medica" class="form-control" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="x_alergias">Alergias</label>
+                        <input type="text" name="x_alergias" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="x_medicacion">Medicación</label>
+                        <input type="text" name="x_medicacion" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="x_contacto_emergencia">Contacto de Emergencia</label>
+                        <input type="text" name="x_contacto_emergencia" class="form-control"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+                <h2>Fichas Existentes</h2>
+                <ul>
+                    <li t-foreach="records" t-as="record">
+                        <t t-esc="record.x_condicion_medica"/> - <t t-esc="record.x_alergias"/>
+                    </li>
+                </ul>
+            </div>
+        </t>
+    </template>
+</odoo>
